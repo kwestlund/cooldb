@@ -15,3 +15,9 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew build
+      env:
+        SIGNING_SECRET_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+        SIGNING_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
