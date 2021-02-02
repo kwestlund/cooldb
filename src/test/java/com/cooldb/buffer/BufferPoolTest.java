@@ -50,8 +50,7 @@ public class BufferPoolTest {
 		// add 4 files to the FileManager
 		files = new RandomAccessFile[4];
 		for (int i = 0; i < 4; i++) {
-			String fileName = System.getProperty("user.home") + "/test/test.db"
-					+ i;
+			String fileName = "build/tmp/cooldb/test/test.db" + i;
 			files[i] = new RandomAccessFile(fileName, "rw");
 			FileChannel channel = files[i].getChannel();
 			channel.truncate(0);

@@ -634,13 +634,11 @@ public class APITest {
      */
     @Test
     public void testExample1() throws DatabaseException {
-        File file = new File(System.getProperty("user.home") + "/test/temp");
+        File file = new File("build/tmp/cooldb/test/temp");
         file.mkdirs();
 
         // Create and start a new database
-        Database db = coolDB.getDatabase(new File(System
-                                                          .getProperty("user.home")
-                                                          + "/test/temp"));
+        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/test/temp"));
         db.replaceDatabase();
 
         // Create a session
@@ -678,12 +676,10 @@ public class APITest {
     @Test
     public void testExample2() throws DatabaseException {
         // Start the database
-        File file = new File(System.getProperty("user.home") + "/test/temp");
+        File file = new File("build/tmp/cooldb/test/temp");
         file.mkdirs();
 
-        Database db = coolDB.getDatabase(new File(System
-                                                          .getProperty("user.home")
-                                                          + "/test/temp"));
+        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/test/temp"));
         db.startDatabase();
 
         // Create a session
@@ -732,12 +728,10 @@ public class APITest {
     @Test
     public void testExample3() throws DatabaseException {
         // Start the database
-        File file = new File(System.getProperty("user.home") + "/test/temp");
+        File file = new File("build/tmp/cooldb/test/temp");
         file.mkdirs();
 
-        Database db = coolDB.getDatabase(new File(System
-                                                          .getProperty("user.home")
-                                                          + "/test/temp"));
+        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/test/temp"));
         db.startDatabase();
 
         // Create a session
@@ -1097,11 +1091,11 @@ public class APITest {
     }
 
     private void runTestData(TestDatum[] testData) throws DatabaseException {
-        File file = new File(System.getProperty("user.home") + "/test/temp");
+        File file = new File("build/tmp/cooldb/test/temp");
         file.mkdirs();
 
         // Create and start a new database
-        Database db = coolDB.getDatabase(new File(System.getProperty("user.home") + "/test/temp"));
+        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/test/temp"));
         db.replaceDatabase();
 
         // Create a session

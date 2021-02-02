@@ -18,7 +18,9 @@
 
 package com.cooldb.buffer;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,9 +28,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 public class FileManagerTest {
 
@@ -43,8 +43,7 @@ public class FileManagerTest {
 		// add 4 files to the FileManager
 		files = new RandomAccessFile[10];
 		for (int i = 0; i < 10; i++) {
-			String fileName = System.getProperty("user.home") + "/test/test.db"
-					+ i;
+			String fileName = "build/tmp/cooldb/test/test.db" + i;
 			files[i] = new RandomAccessFile(fileName, "rw");
 			FileChannel channel = files[i].getChannel();
 			channel.truncate(0);
@@ -62,8 +61,7 @@ public class FileManagerTest {
 		// remove the files
 		for (int i = 0; i < 10; i++) {
 			files[i].close();
-			String fileName = System.getProperty("user.home") + "/test/test.db"
-					+ i;
+			String fileName = "build/tmp/cooldb/test/test.db" + i;
 			File file = new File(fileName);
 			file.delete();
 		}

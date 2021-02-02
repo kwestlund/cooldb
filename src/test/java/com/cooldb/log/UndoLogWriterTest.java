@@ -18,7 +18,12 @@
 
 package com.cooldb.log;
 
-import static org.junit.Assert.assertTrue;
+import com.cooldb.buffer.BufferNotFound;
+import com.cooldb.buffer.DBFile;
+import com.cooldb.buffer.FilePage;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,12 +31,7 @@ import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.util.Iterator;
 
-import com.cooldb.buffer.FilePage;
-import com.cooldb.buffer.BufferNotFound;
-import com.cooldb.buffer.DBFile;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 public class UndoLogWriterTest {
 
@@ -43,7 +43,7 @@ public class UndoLogWriterTest {
 		file.mkdirs();
 
 		// create the log file
-		String fileName = System.getProperty("user.home") + "/test/test.db";
+		String fileName = "build/tmp/cooldb/test/test.db";
 		raf = new RandomAccessFile(fileName, "rw");
 		FileChannel channel = raf.getChannel();
 		channel.truncate(0);
@@ -67,7 +67,7 @@ public class UndoLogWriterTest {
 
 		System.gc();
 
-		String fileName = System.getProperty("user.home") + "/test/test.db";
+		String fileName = "build/tmp/cooldb/test/test.db";
 		File file = new File(fileName);
 		file.delete();
 	}

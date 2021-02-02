@@ -21,11 +21,6 @@ package com.cooldb.recovery;
 import com.cooldb.buffer.*;
 import com.cooldb.log.*;
 import com.cooldb.transaction.*;
-import com.cooldb.transaction.*;
-import com.cooldb.buffer.*;
-import com.cooldb.log.*;
-import com.cooldb.transaction.TransactionLogger;
-import com.cooldb.transaction.TransactionState;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
@@ -790,10 +785,10 @@ public class RecoveryTest {
 		file.mkdirs();
 
 		FileChannel channel;
-		files[0] = new File(System.getProperty("user.home") + "/test/test.redo");
-		files[1] = new File(System.getProperty("user.home") + "/test/test.undo");
-		files[2] = new File(System.getProperty("user.home") + "/test/test.key");
-		files[3] = new File(System.getProperty("user.home") + "/test/test.db1");
+		files[0] = new File("build/tmp/cooldb/test.redo");
+		files[1] = new File("build/tmp/cooldb/test.undo");
+		files[2] = new File("build/tmp/cooldb/test.key");
+		files[3] = new File("build/tmp/cooldb/test.db1");
 		for (int i = 0; i < 4; i++) {
 			raf[i] = new RandomAccessFile(files[i], "rw");
 			channel = raf[i].getChannel();
