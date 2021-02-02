@@ -2,7 +2,7 @@
 
 [![Latest release](https://img.shields.io/github/release/kwestlund/cooldb.svg)](https://github.com/kwestlund/cooldb/releases/latest)
 [![javadoc](https://javadoc.io/badge2/com.cooldb/cooldb/javadoc.svg)](https://javadoc.io/doc/com.cooldb/cooldb)
-![build](https://github.com/kwestlund/cooldb/workflows/build/badge.svg)
+[![build](https://github.com/kwestlund/cooldb/workflows/build/badge.svg)](https://github.com/kwestlund/cooldb/actions?query=workflow%3Abuild)
 
 CoolDB is a pure java, zero dependency, embedded database system.
 
