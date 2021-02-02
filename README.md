@@ -1,4 +1,5 @@
 # CoolDB: Embedded Database for Java
+![build](https://github.com/kwestlund/cooldb/workflows/build/badge.svg)
 
 CoolDB is a pure java, zero dependency, embedded database system.
 
@@ -16,8 +17,7 @@ Some technical highlights:
 * Recovery manager/log writer implements
   the [ARIES](https://en.wikipedia.org/wiki/Algorithms_for_Recovery_and_Isolation_Exploiting_Semantics)
   recovery method. Handles transaction rollback during normal processing and guarantees the atomicity and durability
-  properties of transactions in the fact of process, transaction, system and media failures. Also enforces the WAL
-  protocol.
+  properties of transactions in the fact of process, transaction, system and media failures.
 
 * Mixed method [2PL](https://en.wikipedia.org/wiki/Two-phase_locking)
   and [MVCC](https://en.wikipedia.org/wiki/Multiversion_concurrency_control) concurrency control. Transactions may run

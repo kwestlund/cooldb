@@ -18,11 +18,15 @@
 
 plugins {
     id 'java'
+    id 'maven-publish'
+    id 'signing'
 }
 
 ext {
     junitVersion = "4.4"
     junit5Version = "5.7.0"
+    sonatypeUsername = System.getenv("SONATYPE_USERNAME")
+    sonatypePassword = System.getenv("SONATYPE_PASSWORD")
 }
 
 group 'com.cooldb'
@@ -70,4 +74,75 @@ artifacts {
     archives jar
     archives sourceJar
     archives javadocJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+
+            from components.java
+
+            artifact(sourceJar) {
+                classifier = 'sources'
+            }
+            artifact(javadocJar) {
+                classifier = 'javadoc'
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies (no need in maven central POMs)
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        // add all items necessary for maven central publication
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'CoolDB is a pure java, zero dependency, embedded database system.'
+            name 'CoolDB: Embedded Database for Java'
+            url 'https://github.com/kwestlund/cooldb'
+            organization {
+                name 'Ken Westlund'
+                url 'https://github.com/kwestlund'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/kwestlund/cooldb/issues'
+            }
+            licenses {
+                license {
+                    name 'Apache License 2.0'
+                    url 'https://github.com/kwestlund/cooldb/blob/main/LICENSE.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/kwestlund/cooldb'
+                connection 'scm:git:git://github.com/kwestlund/cooldb.git'
+                developerConnection 'scm:git:ssh://git@github.com:kwestlund/cooldb.git'
+            }
+            developers {
+                developer {
+                    name 'Ken Westlund'
+                }
+            }
+        }
+    }
 }
