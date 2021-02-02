@@ -634,11 +634,11 @@ public class APITest {
      */
     @Test
     public void testExample1() throws DatabaseException {
-        File file = new File("build/tmp/cooldb/test/temp");
+        File file = new File("build/tmp/cooldb/temp");
         file.mkdirs();
 
         // Create and start a new database
-        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/test/temp"));
+        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/temp"));
         db.replaceDatabase();
 
         // Create a session
@@ -676,10 +676,10 @@ public class APITest {
     @Test
     public void testExample2() throws DatabaseException {
         // Start the database
-        File file = new File("build/tmp/cooldb/test/temp");
+        File file = new File("build/tmp/cooldb/temp");
         file.mkdirs();
 
-        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/test/temp"));
+        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/temp"));
         db.startDatabase();
 
         // Create a session
@@ -728,10 +728,10 @@ public class APITest {
     @Test
     public void testExample3() throws DatabaseException {
         // Start the database
-        File file = new File("build/tmp/cooldb/test/temp");
+        File file = new File("build/tmp/cooldb/temp");
         file.mkdirs();
 
-        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/test/temp"));
+        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/temp"));
         db.startDatabase();
 
         // Create a session
@@ -1091,11 +1091,11 @@ public class APITest {
     }
 
     private void runTestData(TestDatum[] testData) throws DatabaseException {
-        File file = new File("build/tmp/cooldb/test/temp");
+        File file = new File("build/tmp/cooldb/temp");
         file.mkdirs();
 
         // Create and start a new database
-        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/test/temp"));
+        Database db = coolDB.getDatabase(new File("build/tmp/cooldb/temp"));
         db.replaceDatabase();
 
         // Create a session

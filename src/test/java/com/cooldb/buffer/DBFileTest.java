@@ -37,7 +37,7 @@ public class DBFileTest {
 		System.gc();
 		File file = new File("build/tmp/cooldb");
 		file.mkdirs();
-		raf = new RandomAccessFile("build/tmp/cooldb/test/test.db", "rw");
+		raf = new RandomAccessFile("build/tmp/cooldb/test.db", "rw");
 		FileChannel channel = raf.getChannel();
 		channel.truncate(0);
 		dbf = new DBFile(raf);
@@ -48,7 +48,7 @@ public class DBFileTest {
 	public void tearDown() throws IOException {
 		// remove the file
 		raf.close();
-		String fileName = "build/tmp/cooldb/test/test.db";
+		String fileName = "build/tmp/cooldb/test.db";
 		File file = new File(fileName);
 		file.delete();
 

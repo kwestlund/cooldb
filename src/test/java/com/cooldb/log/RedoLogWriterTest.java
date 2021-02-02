@@ -41,7 +41,7 @@ public class RedoLogWriterTest {
 		file.mkdirs();
 
 		// create the log file
-		String fileName = "build/tmp/cooldb/test/test.db";
+		String fileName = "build/tmp/cooldb/test.db";
 		raf = new RandomAccessFile(fileName, "rw");
 		FileChannel channel = raf.getChannel();
 		channel.truncate(0);
@@ -62,7 +62,7 @@ public class RedoLogWriterTest {
 
 		System.gc();
 
-		String fileName = "build/tmp/cooldb/test/test.db";
+		String fileName = "build/tmp/cooldb/test.db";
 		File file = new File(fileName);
 		file.delete();
 	}

@@ -43,7 +43,7 @@ public class FileManagerTest {
 		// add 4 files to the FileManager
 		files = new RandomAccessFile[10];
 		for (int i = 0; i < 10; i++) {
-			String fileName = "build/tmp/cooldb/test/test.db" + i;
+			String fileName = "build/tmp/cooldb/test.db" + i;
 			files[i] = new RandomAccessFile(fileName, "rw");
 			FileChannel channel = files[i].getChannel();
 			channel.truncate(0);
@@ -61,7 +61,7 @@ public class FileManagerTest {
 		// remove the files
 		for (int i = 0; i < 10; i++) {
 			files[i].close();
-			String fileName = "build/tmp/cooldb/test/test.db" + i;
+			String fileName = "build/tmp/cooldb/test.db" + i;
 			File file = new File(fileName);
 			file.delete();
 		}
