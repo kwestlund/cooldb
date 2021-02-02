@@ -191,7 +191,10 @@ def customizePom(pom) {
         tasks.publishMavenJavaPublicationToMavenLocal {
             dependsOn project.tasks.signArchives
         }
-        tasks.publishMavenJavaPublicationToMavenRepository {
+        tasks.publishMavenJavaPublicationToGitHubPackagesRepository {
+            dependsOn project.tasks.signArchives
+        }
+        tasks.publishMavenJavaPublicationToOSSRHRepository {
             dependsOn project.tasks.signArchives
         }
     }
