@@ -1,5 +1,7 @@
 # CoolDB: Embedded Database for Java
+
 [![Latest release](https://img.shields.io/github/release/kwestlund/cooldb.svg)](https://github.com/kwestlund/cooldb/releases/latest)
+[![javadoc](https://javadoc.io/badge2/com.cooldb/cooldb/javadoc.svg)](https://javadoc.io/doc/com.cooldb/cooldb)
 ![build](https://github.com/kwestlund/cooldb/workflows/build/badge.svg)
 
 CoolDB is a pure java, zero dependency, embedded database system.
@@ -39,7 +41,7 @@ To add a dependency on CoolDB using Maven, use the following:
 <dependency>
     <groupId>com.cooldb</groupId>
     <artifactId>cooldb</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -47,13 +49,13 @@ To add a dependency using Gradle:
 
 ```gradle
 dependencies {
-  implementation("com.cooldb:cooldb:1.0")
+  implementation("com.cooldb:cooldb:1.0.0")
 }
 ```
 
 ## Usage
 
-See the [CoolDB API]() javadocs for an overview and examples.
+See the latest [CoolDB API](https://javadoc.io/doc/com.cooldb/cooldb) javadocs for an overview and examples.
 
 ## History
 
