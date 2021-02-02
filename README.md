@@ -1,4 +1,5 @@
 # CoolDB: Embedded Database for Java
+[![Latest release](https://img.shields.io/github/release/kwestlund/cooldb.svg)](https://github.com/kwestlund/cooldb/releases/latest)
 ![build](https://github.com/kwestlund/cooldb/workflows/build/badge.svg)
 
 CoolDB is a pure java, zero dependency, embedded database system.

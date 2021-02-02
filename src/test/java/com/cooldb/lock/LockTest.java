@@ -197,7 +197,7 @@ public class LockTest implements WAL {
 		assertTrue(ct3.waiting);
 
 		commit(t1);
-		Thread.sleep(100);
+		Thread.sleep(200);
 
 		assertTrue(ct2.success && ct3.success);
 	}
