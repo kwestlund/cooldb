@@ -25,8 +25,6 @@ plugins {
 ext {
     junitVersion = "4.4"
     junit5Version = "5.7.0"
-    sonatypeUsername = System.getenv("SONATYPE_USERNAME")
-    sonatypePassword = System.getenv("SONATYPE_PASSWORD")
 }
 
 group 'com.cooldb'
@@ -76,6 +74,13 @@ artifacts {
     archives javadocJar
 }
 
+signing {
+    def signingKey = System.getenv("SIGNING_SECRET_KEY")
+    def signingPassword = System.getenv("SIGNING_SECRET_KEY_PASSWORD")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign configurations.archives
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -83,20 +88,53 @@ publishing {
 
             from components.java
 
+            // create the sign pom artifact
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/generated-pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+            }
+
             artifact(sourceJar) {
                 classifier = 'sources'
             }
             artifact(javadocJar) {
                 classifier = 'javadoc'
             }
+
+            // create the signed artifacts
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
         }
     }
     repositories {
         maven {
-            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            name = "OSSRH"
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
             credentials {
-                username sonatypeUsername
-                password sonatypePassword
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/kwestlund/cooldb"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
@@ -117,10 +155,10 @@ def customizePom(pom) {
 
             description 'CoolDB is a pure java, zero dependency, embedded database system.'
             name 'CoolDB: Embedded Database for Java'
-            url 'https://github.com/kwestlund/cooldb'
+            url 'https://cooldb.com'
             organization {
-                name 'Ken Westlund'
-                url 'https://github.com/kwestlund'
+                name 'com.cooldb'
+                url 'https://cooldb.com'
             }
             issueManagement {
                 system 'GitHub'
@@ -143,6 +181,18 @@ def customizePom(pom) {
                     name 'Ken Westlund'
                 }
             }
+        }
+    }
+
+    model {
+        tasks.generatePomFileForMavenJavaPublication {
+            destination = file("$buildDir/generated-pom.xml")
+        }
+        tasks.publishMavenJavaPublicationToMavenLocal {
+            dependsOn project.tasks.signArchives
+        }
+        tasks.publishMavenJavaPublicationToMavenRepository {
+            dependsOn project.tasks.signArchives
         }
     }
 }

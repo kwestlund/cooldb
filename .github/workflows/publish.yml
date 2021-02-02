@@ -1,0 +1,22 @@
+name: publish
+on:
+  release:
+    types: [created]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Publish to both the Maven Central Repository and GitHub Packages
+        run: gradle publish
+        env:
+          SIGNING_SECRET_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+          SIGNING_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
