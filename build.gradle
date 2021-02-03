@@ -28,7 +28,7 @@ ext {
 }
 
 group 'com.cooldb'
-version '1.0.0'
+version '1.0.1'
 
 repositories {
     mavenCentral()
@@ -160,7 +160,18 @@ def customizePom(pom) {
         }
     }
 
+    task copyREADME(type: Copy) {
+        from 'src/templates'
+        into "$projectDir"
+        include 'README.template.md'
+        rename { file -> 'README.md' }
+        expand(project: project)
+    }
+
     model {
+        tasks.assemble {
+            dependsOn project.tasks.copyREADME
+        }
         tasks.generatePomFileForMavenJavaPublication {
             destination = file("$buildDir/generated-pom.xml")
         }

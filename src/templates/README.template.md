@@ -43,7 +43,7 @@ To add a dependency on CoolDB using Maven, use the following:
 <dependency>
     <groupId>com.cooldb</groupId>
     <artifactId>cooldb</artifactId>
-    <version>1.0.1</version>
+    <version>${project.version}</version>
 </dependency>
 ```
 
@@ -51,7 +51,7 @@ To add a dependency using Gradle:
 
 ```gradle
 dependencies {
-  implementation("com.cooldb:cooldb:1.0.1")
+  implementation("com.cooldb:cooldb:${project.version}")
 }
 ```
 
