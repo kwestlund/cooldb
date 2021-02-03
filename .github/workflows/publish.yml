@@ -10,7 +10,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: 8
       - name: Publish to both the Maven Central Repository and GitHub Packages
         run: gradle publish
         env:
