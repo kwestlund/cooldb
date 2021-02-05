@@ -22,6 +22,9 @@ plugins {
     id 'signing'
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 ext {
     junitVersion = "4.4"
     junit5Version = "5.7.0"
@@ -133,8 +136,8 @@ def customizePom(pom) {
             name 'CoolDB: Embedded Database for Java'
             url 'https://cooldb.com'
             organization {
-                name 'com.cooldb'
-                url 'https://cooldb.com'
+                name 'CoolDB'
+                url 'http://cooldb.com'
             }
             issueManagement {
                 system 'GitHub'

@@ -90,7 +90,7 @@ Ideas for future research and work on CoolDB:
 # Influences
 
 1. [Relational Model of Data for Large Shared Data Banks](http://avid.cs.umass.edu/courses/645/s2006/codd.pdf)
-1. [System R: Relational Approach to Database Management](https://dl.acm.org/doi/pdf/10.1145/320455.320457)
+1. [System R: Relational Approach to Database Management](http://daslab.seas.harvard.edu/reading-group/papers/astrahan-1976.pdf)
 1. [Buffer Management in Relational Database Systems](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.137.8362&rep=rep1&type=pdf)
 1. [Granularity of Locks and Degrees of Consistency in a Shared Data Base](https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=FDF91C045A64BF3AEA3000AD006818A7?doi=10.1.1.92.8248&rep=rep1&type=pdf)
 1. [An Evaluation of Buffer Management Strategies for Relational Database Systems](http://www.vldb.org/conf/1985/P127.PDF)
